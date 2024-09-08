@@ -1,3 +1,7 @@
 export default function Invoices() {
-  return <div>Invoices</div>;
+  return (
+    <div className="flex justify-center items-center h-screen w-screen">
+      Invoices Page
+    </div>
+  );
 }

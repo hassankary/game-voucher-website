@@ -1,4 +1,7 @@
 export default function Leaderboard() {
-    return <div>Leaderboard</div>;
-  }
-  
+  return (
+    <div className="flex justify-center items-center h-screen w-screen">
+      Leaderboard Page
+    </div>
+  );
+}
