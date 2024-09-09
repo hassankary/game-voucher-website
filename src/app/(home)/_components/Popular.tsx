@@ -45,12 +45,8 @@ export default function Popular() {
   }, []);
 
   useEffect(() => {
-    if (error) {
-      console.error("Error fetching products:", error);
-    } else {
-      console.log("popularProducts =>", popularProducts);
-    }
-  }, [popularProducts, error]);
+    console.error("Error fetching popular:", error);
+  }, [error]);
 
   return (
     <div className="container flex flex-col mx-auto px-4 space-y-5 xl:max-w-7xl">
@@ -79,7 +75,7 @@ export default function Popular() {
                 <li key={i}>
                   <Link
                     href={`https://www.vygaming.id/id/${d.handle}`}
-                    className={`flex p-2 bg-gradient-to-br from-[#292929] to-[#292929] via-[#3B3B3B] rounded-2xl hover:ring-2 hover:ring-offset-2 hover:ring-offset-[#141414] hover:ring-[#0563FC] transition-all duration-300 ease-in-out overflow-hidden`}
+                    className={`h-full flex p-2 bg-gradient-to-br from-[#292929] to-[#292929] via-[#3B3B3B] rounded-2xl hover:ring-2 hover:ring-offset-2 hover:ring-offset-[#141414] hover:ring-[#0563FC] transition-all duration-300 ease-in-out overflow-hidden`}
                   >
                     <div
                       className={`${styles.slideR} ${
@@ -98,7 +94,7 @@ export default function Popular() {
                         <h1 className="font-semibold text-[0.625rem] md:text-[1rem]">
                           {d.title}
                         </h1>
-                        <p className="text-sm text-[0.625rem] md:text-sm">
+                        <p className="text-[0.625rem] md:text-sm">
                           {d.publisher}
                         </p>
                       </div>

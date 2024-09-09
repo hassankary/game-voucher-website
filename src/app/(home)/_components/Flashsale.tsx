@@ -46,12 +46,8 @@ export default function FlashSale() {
   }, []);
 
   useEffect(() => {
-    if (error) {
-      console.error("Error fetching products:", error);
-    } else {
-      console.log("flashSale =>", flashSale);
-    }
-  }, [flashSale, error]);
+      console.error("Error fetching flashsale:", error);
+  }, [error]);
 
   return (
     <div className="container flex flex-col mx-auto px-4 space-y-5 xl:max-w-7xl">
