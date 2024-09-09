@@ -39,28 +39,23 @@ export default function CarouselHomePage() {
   }, []);
 
   useEffect(() => {
-    if (error) {
-      console.error("Error fetching banner:", error);
-    } else {
-      console.log("banner =>", banner);
-    }
-  }, [banner, error]);
+    console.error("Error fetching banner:", error);
+  }, [error]);
 
   return (
-    <div className="container flex flex-col mx-auto px-4 space-y-5 xl:max-w-7xl bg-red-500">
+    <div className="container flex flex-col mx-auto px-4 space-y-5 xl:max-w-7xl">
       <div className="h-44 xs:h-56 md:h-[320px] lg:min-h-[521.96px] py-4 flex items-center">
         <Carousel indicators={false} className="rounded-3xl overflow-hidden">
           {banner?.map((d, i) => {
             return (
               <Image
-              key={i}
-              src={d.src}
-              alt={d.title}
-              width={300}
-              height={300}
-              unoptimized
-              className="w-full rounded-3xl"
-
+                key={i}
+                src={d.src}
+                alt={d.title}
+                width={300}
+                height={300}
+                unoptimized
+                className="w-full rounded-3xl"
               />
             );
           })}
