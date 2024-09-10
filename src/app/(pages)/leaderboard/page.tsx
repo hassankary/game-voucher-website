@@ -120,7 +120,7 @@ export default function Leaderboard() {
             </p>
           </div>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-14 sm:mt-24 text-sm">
-            {listDataCard.map((d, i) => {
+            {listDataCard?.map((d) => {
               return (
                 <div
                   key={d.title}
@@ -135,7 +135,7 @@ export default function Leaderboard() {
                     <ul className=" space-y-3">
                       {d.state?.map((d, i) => {
                         return (
-                          <li className="flex justify-between">
+                          <li key={i} className="flex justify-between">
                             <div>
                               {i + 1}. {d.fullname}
                               {i === 0
