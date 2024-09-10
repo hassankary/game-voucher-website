@@ -28,10 +28,10 @@ const navbarMenu = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  console.log("Current path:", pathname);
+  // console.log("Current path:", pathname);
 
   return (
-    <nav className="sticky top-0 z-40 w-full flex-none font-sans font-semibold text-sm border-b border-[#343434] bg-secondary/80 backdrop-blur">
+    <nav className="sticky top-0 z-40 w-full flex-none font-sans font-semibold text-sm bg-[#141414]/80 border-b border-[#343434] bg-secondary/80 backdrop-blur">
       <div className="container mx-auto px-4 xl:max-w-7xl ">
         <div className="flex h-[60px] justify-between items-center ">
           <div className="flex">
@@ -74,9 +74,9 @@ export default function Navbar() {
               </button>
             </div>
             <div className="hidden lg:flex">
-              <button className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
+              <Link href={`https://www.vygaming.id/id/sign-in`} className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
                 <h1>Masuk</h1>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
