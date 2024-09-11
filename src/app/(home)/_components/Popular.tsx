@@ -75,7 +75,7 @@ export default function Popular() {
                 <li key={i}>
                   <Link
                     href={`https://www.vygaming.id/id/${d.handle}`}
-                    className={`h-full flex p-2 bg-gradient-to-br from-[#292929] to-[#292929] via-[#3B3B3B] rounded-2xl hover:ring-2 hover:ring-offset-2 hover:ring-offset-[#141414] hover:ring-[#0563FC] transition-all duration-300 ease-in-out overflow-hidden`}
+                    className={`h-full flex p-2 bg-top bg-custom-clamp bg-card-pattern bg-[#202020] rounded-2xl hover:ring-2 hover:ring-offset-2 hover:ring-offset-[#141414] hover:ring-[#0563FC] transition-all duration-300 ease-in-out overflow-hidden`}
                   >
                     <div
                       className={`${styles.slideR} ${
