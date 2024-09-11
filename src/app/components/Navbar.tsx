@@ -7,6 +7,7 @@ import { AiFillSignal } from "react-icons/ai";
 import { CgSearch } from "react-icons/cg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 const navbarMenu = [
   {
@@ -26,6 +27,26 @@ const navbarMenu = [
   },
 ];
 
+const SearchIcon: React.FC = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      aria-hidden="true"
+      className="h-5 w-5 sm:h-4 sm:w-4"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+      ></path>
+    </svg>
+  );
+};
+
 export default function Navbar() {
   const pathname = usePathname();
   // console.log("Current path:", pathname);
@@ -35,9 +56,40 @@ export default function Navbar() {
       <div className="container mx-auto px-4 xl:max-w-7xl ">
         <div className="flex h-[60px] justify-between items-center ">
           <div className="flex">
-            <button className="p-2 lg:hidden">
-              <HiBars3 className="h-6 w-6" />
-            </button>
+            <Menu>
+              <MenuButton className="p-2 lg:hidden">
+                {" "}
+                <HiBars3 className="h-6 w-6" />
+              </MenuButton>
+              <MenuItems
+                transition
+                modal={false}
+                anchor="bottom"
+                className="fixed w-[180px] mt-2 ml-2 z-10 rounded-xl border border-[#212121] bg-[#1C1C1C] p-1 text-sm/6 text-white transition duration-100 ease-out focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+              >
+                {navbarMenu.map((d) => {
+                  return (
+                    <MenuItem key={d.title}>
+                      <Link
+                        href={d.href}
+                        className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
+                      >
+                        {d.title}
+                      </Link>
+                    </MenuItem>
+                  );
+                })}
+                <div className="my-1 h-px bg-white/5" />
+                <MenuItem>
+                  <Link
+                    href={"/"}
+                    className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
+                  >
+                    Masuk
+                  </Link>
+                </MenuItem>
+              </MenuItems>
+            </Menu>
             <Link href={"/"} className="p-2">
               <IoGameController className="h-10 w-10 text-blue-500" />
             </Link>
@@ -64,8 +116,8 @@ export default function Navbar() {
           </div>
           <div className="flex space-x-2 flex-grow justify-end">
             <div className="flex gap-x-2">
-              <button className="flex justify-center items-center px-3 py-2 lg:pl-3 lg:pr-4 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
-                <CgSearch className="h-4 w-4" />
+              <button className="flex justify-center items-center px-2 sm:px-3 py-2 lg:pl-3 lg:pr-4 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
+                <SearchIcon />
                 <h1 className="hidden lg:flex">Search</h1>
               </button>
               <button className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
@@ -74,7 +126,10 @@ export default function Navbar() {
               </button>
             </div>
             <div className="hidden lg:flex">
-              <Link href={`https://www.vygaming.id/id/sign-in`} className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
+              <Link
+                href={`https://www.vygaming.id/id/sign-in`}
+                className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300"
+              >
                 <h1>Masuk</h1>
               </Link>
             </div>
