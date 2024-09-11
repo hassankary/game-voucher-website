@@ -52,12 +52,12 @@ export default function Navbar() {
   // console.log("Current path:", pathname);
 
   return (
-    <nav className="sticky top-0 z-40 w-full flex-none font-sans font-semibold text-sm bg-[#141414]/80 border-b border-[#343434] bg-secondary/80 backdrop-blur">
+    <nav className="sticky top-0 z-40 w-full flex-none font-sans font-semibold text-sm bg-[#141414]/[0.81] border-b border-[#535353]/50 backdrop-blur">
       <div className="container mx-auto px-4 xl:max-w-7xl ">
         <div className="flex h-[60px] justify-between items-center ">
           <div className="flex">
             <Menu>
-              <MenuButton className="p-2 lg:hidden">
+              <MenuButton className="p-2 lg:hidden active:scale-90 transition-all duration-300 ease-out">
                 {" "}
                 <HiBars3 className="h-6 w-6" />
               </MenuButton>
@@ -82,7 +82,7 @@ export default function Navbar() {
                 <div className="my-1 h-px bg-white/5" />
                 <MenuItem>
                   <Link
-                    href={"/"}
+                    href={`https://www.vygaming.id/id/sign-in`}
                     className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                   >
                     Masuk
@@ -114,13 +114,13 @@ export default function Navbar() {
               })}
             </div>
           </div>
-          <div className="flex space-x-2 flex-grow justify-end">
+          <div className="flex space-x-6 flex-grow justify-end">
             <div className="flex gap-x-2">
-              <button className="flex justify-center items-center px-2 sm:px-3 py-2 lg:pl-3 lg:pr-4 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
+              <button className="flex justify-center items-center px-2 sm:px-3 py-2 lg:pl-3 lg:pr-4 gap-x-2 border border-[#535353]/50 bg-transparent hover:bg-[#1C1C1C]/50 rounded-lg transition-all duration-300 ease-in-out">
                 <SearchIcon />
                 <h1 className="hidden lg:flex">Search</h1>
               </button>
-              <button className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300">
+              <button className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#535353]/50 bg-transparent hover:bg-[#1C1C1C]/50 rounded-lg transition-all duration-300 ease-in-out">
                 <h1>ID</h1>
                 <IoIosArrowDown />
               </button>
@@ -128,7 +128,7 @@ export default function Navbar() {
             <div className="hidden lg:flex">
               <Link
                 href={`https://www.vygaming.id/id/sign-in`}
-                className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#343434] bg-transparent hover:bg-[#1C1C1C] rounded-lg transition-all duration-300"
+                className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#535353]/50 bg-transparent hover:bg-[#1C1C1C]/50 rounded-lg transition-all duration-300 ease-in-out"
               >
                 <h1>Masuk</h1>
               </Link>
