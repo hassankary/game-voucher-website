@@ -16,7 +16,7 @@ export default function Divider() {
         strokeWidth="0"
         fill="currentColor"
         fillOpacity="1"
-        className="fill-black transition-all delay-150 duration-300 ease-in-out"
+        className="fill-[#121212] transition-all delay-150 duration-300 ease-in-out"
       ></path>
     </svg>
   );

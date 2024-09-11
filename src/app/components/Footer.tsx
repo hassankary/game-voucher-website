@@ -28,7 +28,7 @@ const dataFooter = [
 
 export default function Footer() {
   return (
-    <div className="w-full bg-black">
+    <div className="w-full bg-[#121212]">
       <div className="container flex flex-col mx-auto px-4 py-12 space-y-16 xl:max-w-7xl items-center">
         <div className="flex flex-col w-full space-y-5">
           <div className="w-full grid grid-cols-4 gap-8 font-semibold text-sm text-[#0563FC]">

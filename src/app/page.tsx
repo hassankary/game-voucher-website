@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <main className="flex flex-col">
         <CarouselHomePage />
-        <div className="flex flex-col gap-y-8 pt-8">
+        <div className="flex flex-col gap-y-8 pt-8 bg-[#1C1C1C]">
           <FlashSale />
           <Popular />
           <Products />
