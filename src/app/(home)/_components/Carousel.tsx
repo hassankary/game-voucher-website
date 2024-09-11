@@ -1,6 +1,7 @@
 "use client";
 import { Carousel } from "flowbite-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface Banner {
@@ -48,15 +49,23 @@ export default function CarouselHomePage() {
         <Carousel indicators={false} className="rounded-3xl overflow-hidden">
           {banner?.map((d, i) => {
             return (
-              <Image
+              <Link
                 key={i}
-                src={d.src}
-                alt={d.title}
-                width={300}
-                height={300}
-                unoptimized
-                className="w-full rounded-3xl"
-              />
+                href={
+                  i === banner.length - 1
+                    ? d.href
+                    : `https://vygaming.id/${d.href}`
+                }
+              >
+                <Image
+                  src={d.src}
+                  alt={d.title}
+                  width={300}
+                  height={300}
+                  unoptimized
+                  className="w-full rounded-3xl"
+                />
+              </Link>
             );
           })}
         </Carousel>
