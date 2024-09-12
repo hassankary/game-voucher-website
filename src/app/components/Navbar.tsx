@@ -8,6 +8,7 @@ import { CgSearch } from "react-icons/cg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { AmericaFlag, IndonesiaFlag } from "./Flag";
 
 const navbarMenu = [
   {
@@ -24,6 +25,19 @@ const navbarMenu = [
     title: "Leaderboard",
     href: "/leaderboard",
     component: <AiFillSignal className="h-4 w-4" />,
+  },
+];
+
+const languageMenu = [
+  {
+    title: "Indonesia",
+    href: "/",
+    component: <IndonesiaFlag />,
+  },
+  {
+    title: "English",
+    href: "/",
+    component: <AmericaFlag />,
   },
 ];
 
@@ -72,7 +86,9 @@ export default function Navbar() {
                     <MenuItem key={d.title}>
                       <Link
                         href={d.href}
-                        className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
+                        className={`${
+                          pathname === d.href ? "bg-white/10" : ""
+                        } group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10`}
                       >
                         {d.title}
                       </Link>
@@ -120,10 +136,38 @@ export default function Navbar() {
                 <SearchIcon />
                 <h1 className="hidden lg:flex">Search</h1>
               </button>
-              <button className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#535353]/50 bg-transparent hover:bg-[#1C1C1C]/50 rounded-lg transition-all duration-300 ease-in-out">
-                <h1>ID</h1>
-                <IoIosArrowDown />
-              </button>
+              <Menu>
+                {({ open }) => (
+                  <>
+                    <MenuButton className="flex justify-center items-center px-4 py-2 gap-x-2 border border-[#535353]/50 bg-transparent hover:bg-[#1C1C1C]/50 rounded-lg transition-all duration-300 ease-in-out">
+                      <h1>ID</h1>
+                      <IoIosArrowDown
+                        className={`transition-transform duration-300 ease-in-out ${
+                          open ? "rotate-180" : ""
+                        }`}
+                      />
+                    </MenuButton>
+                    <MenuItems
+                      transition
+                      modal={false}
+                      anchor="bottom end"
+                      className="fixed w-48 mt-2 z-50 rounded-xl border border-[#212121] bg-[#1C1C1C] p-1 text-sm text-white transition duration-100 ease-out focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+                    >
+                      {languageMenu?.map((d) => (
+                        <MenuItem key={d.title}>
+                          <Link
+                            href={d.href}
+                            className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 hover:bg-white/10"
+                          >
+                            <div>{d.component}</div>
+                            <span className="ml-2">{d.title}</span>
+                          </Link>
+                        </MenuItem>
+                      ))}
+                    </MenuItems>
+                  </>
+                )}
+              </Menu>
             </div>
             <div className="hidden lg:flex">
               <Link
