@@ -65,17 +65,17 @@ const CountdownTimer = () => {
     return (
       <div className="flex items-center space-x-2 font-normal text-sm">
         <span
-          className="flex h-7 w-7 justify-center items-center bg-[#202020] rounded-md"
+          className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
         >
           00
         </span>
         <span
-          className="flex h-7 w-7 justify-center items-center bg-[#202020] rounded-md"
+          className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
         >
           00
         </span>
         <span
-          className="flex h-7 w-7 justify-center items-center bg-[#202020] rounded-md"
+          className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
         >
           00
         </span>
@@ -90,25 +90,25 @@ const CountdownTimer = () => {
   const timerComponents = [
     <span
       key="days"
-      className="flex h-7 w-7 justify-center items-center bg-[#202020] rounded-md"
+      className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
     >
       {timeLeft.days.toString().padStart(2, "0")}
     </span>,
     <span
       key="hours"
-      className="flex h-7 w-7 justify-center items-center bg-[#202020] rounded-md"
+      className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
     >
       {timeLeft.hours.toString().padStart(2, "0")}
     </span>,
     <span
       key="minutes"
-      className="flex h-7 w-7 justify-center items-center bg-[#202020] rounded-md"
+      className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
     >
       {timeLeft.minutes.toString().padStart(2, "0")}
     </span>,
     <span
       key="seconds"
-      className="flex h-7 w-7 justify-center items-center bg-[#202020] rounded-md"
+      className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
     >
       {timeLeft.seconds.toString().padStart(2, "0")}
     </span>,

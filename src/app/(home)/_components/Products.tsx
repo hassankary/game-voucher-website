@@ -119,7 +119,7 @@ export default function Products() {
         {menu === "Top Up" && more.topup < products[0]?.products.length ? (
           <button
             onClick={() => setMore({ ...more, topup: more.topup + 12 })}
-            className={`bg-[#212121] active:bg-[#212121]/70 md:hover:bg-[#212121]/75 px-4 py-2 font-semibold text-xs rounded-md active:scale-95 transition-all duration-300 ease-out`}
+            className={`h-10 px-4 py-2 bg-[#121212] active:bg-[#121212]/70 md:hover:bg-[#121212]/80 font-medium text-xs rounded-md active:scale-95 transition-all duration-300 ease-out`}
           >
             Tampilkan Lainnya...
           </button>
@@ -127,7 +127,7 @@ export default function Products() {
           more.voucher < products[1]?.products.length ? (
           <button
             onClick={() => setMore({ ...more, voucher: more.voucher + 12 })}
-            className={`bg-[#212121] active:bg-[#212121]/70 md:hover:bg-[#212121]/75 px-4 py-2 font-semibold text-xs rounded-md active:scale-95 transition-all duration-300 ease-out`}
+            className={`h-10 px-4 py-2 bg-[#121212] active:bg-[#121212]/70 md:hover:bg-[#121212]/80 font-medium text-xs rounded-md active:scale-95 transition-all duration-300 ease-out`}
           >
             Tampilkan Lainnya...
           </button>
