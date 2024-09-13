@@ -84,6 +84,23 @@ const SearchIconModal: React.FC = () => {
   );
 };
 
+interface Product {
+  name: string;
+  products: ProductDetail[];
+}
+
+interface ProductDetail {
+  categoryName: string;
+  code: string;
+  handle: string;
+  inputs: string[];
+  isPopular: boolean;
+  publisher: string;
+  subtitle: string;
+  thumbnail: string;
+  title: string;
+}
+
 interface PopularProducts {
   categoryName: string;
   code: string;
@@ -100,8 +117,29 @@ export default function Navbar() {
   const pathname = usePathname();
   // console.log("Current path:", pathname);
   const [popularProducts, setPopularProducts] = useState<PopularProducts[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [search, setSearch] = useState<string>("");
+
+  const getProducts = async (): Promise<void> => {
+    try {
+      const res = await fetch("https://game-voucher-api.vercel.app/product");
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const response = await res.json();
+      setProducts(response);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
+    }
+  };
 
   const getPopular = async (): Promise<void> => {
     try {
@@ -121,20 +159,22 @@ export default function Navbar() {
       }
     }
   };
-
+  
   useEffect(() => {
     if (openModal) {
       getPopular();
+      getProducts();
+
     } else {
       setPopularProducts([]);
+      setProducts([]);
+      setSearch("");
     }
   }, [openModal]);
 
   useEffect(() => {
-    if (error) {
-      console.error("Error fetching popular:", error);
-    } else console.log("popular Product navbar =>", popularProducts);
-  }, [popularProducts, error]);
+    console.error("Error fetching Navbar:", error);
+  }, [error]);
 
   const open = () => {
     setOpenModal(!openModal);
@@ -142,8 +182,17 @@ export default function Navbar() {
 
   const close = () => {
     setOpenModal(false);
-    setPopularProducts([]);
   };
+
+  const allProducts = [
+    ...(products[0]?.products || []),
+    ...(products[1]?.products || []),
+  ];
+
+  const filteredProducts =
+    allProducts?.filter((product) =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    ) || [];
 
   return (
     <>
@@ -283,33 +332,39 @@ export default function Navbar() {
                 </div>
                 <input
                   placeholder="Search..."
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
                   className="h-12 w-full py-2 text-white placeholder:text-white bg-[#212121] text-sm focus:outline-none"
                 />
               </div>
               <div className="max-h-80 flex flex-col p-2 overflow-y-auto">
-                <h1 className="px-3 pt-4 font-semibold text-xs">Popular</h1>
-                {popularProducts.length === 0 ? (
+                <h1 className="px-3 pt-4 font-semibold text-xs">
+                  {search !== "" ? "Search" : "Popular"}
+                </h1>
+                {search === "" && popularProducts.length === 0 ? (
                   <div className="h-[280px] flex justify-center items-center"></div>
                 ) : (
-                  <ul className="px-3 pt-2">
-                    {popularProducts?.map((d) => {
-                      return (
-                        <li
-                          key={d.title}
-                          className="flex items-center py-2 space-x-3 text-sm"
-                        >
-                          <Image
-                            src={d.thumbnail}
-                            alt={d.title}
-                            height={300}
-                            width={300}
-                            unoptimized
-                            className="w-24 object-cover aspect-square rounded-2xl"
-                          />
-                          <div>{d.title}</div>
-                        </li>
-                      );
-                    })}
+                  <ul className="pt-2">
+                    {(search === "" ? popularProducts : filteredProducts).map(
+                      (d) => {
+                        return (
+                          <li
+                            key={d.title}
+                            className="flex items-center px-3 py-2 space-x-3 text-sm hover:bg-black/20 rounded-xl transition-colors"
+                          >
+                            <Image
+                              src={d.thumbnail}
+                              alt={d.title}
+                              height={300}
+                              width={300}
+                              unoptimized
+                              className="w-24 object-cover aspect-square rounded-2xl"
+                            />
+                            <div>{d.title}</div>
+                          </li>
+                        );
+                      }
+                    )}
                   </ul>
                 )}
               </div>
