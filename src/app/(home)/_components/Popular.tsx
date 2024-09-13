@@ -50,9 +50,9 @@ export default function Popular() {
 
   return (
     <div className="container flex flex-col mx-auto px-4 space-y-5 xl:max-w-7xl">
-      <div className="flex flex-col font-semibold">
-        <h1 className="uppercase text-lg">🔥 Populer Sekarang!</h1>
-        <p className="text-xs">
+      <div className="flex flex-col">
+        <h1 className="uppercase font-semibold text-lg leading-relaxed tracking-wider">🔥 Populer Sekarang!</h1>
+        <p className="pl-8 text-xs">
           Berikut adalah beberapa produk yang paling populer saat ini.
         </p>
       </div>
@@ -65,7 +65,7 @@ export default function Popular() {
                     href={`/`}
                     className="flex p-2 bg-gradient-to-br from-[#292929] to-[#292929] via-[#3B3B3B] rounded-2xl hover:ring-2 hover:ring-offset-2 hover:ring-offset-[#141414] hover:ring-[#0563FC] transition-all duration-300 ease-in-out animate-pulse"
                   >
-                    <div className=" h-20">{d}</div>
+                    <div className="h-[56px] md:h-20">{d}</div>
                   </Link>
                 </li>
               );

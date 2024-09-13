@@ -52,12 +52,12 @@ export default function FlashSale() {
   return (
     <div className="container flex flex-col mx-auto px-4 xl:max-w-7xl">
       <div className="flex flex-col w-full bg-[#1E1E1E] rounded-2xl overflow-hidden">
-        <div className="flex flex-col px-4 pb-3 pt-4 font-semibold space-y-1">
-          <div className="flex gap-x-5 uppercase text-lg">
-            <span>⚡️ Flash Sale</span>
+        <div className="flex flex-col px-4 pb-3 pt-4">
+          <div className="flex gap-x-5 text-lg leading-relaxed ">
+            <span className="uppercase font-semibold leading-relaxed tracking-wider">⚡️ Flash Sale</span>
             <CountdownTimer />
           </div>
-          <p className="text-xs">Pesan sekarang! Persediaan terbatas.</p>
+          <p className="pl-8 text-xs">Pesan sekarang! Persediaan terbatas.</p>
         </div>
         <Marquee pauseOnHover autoFill className="flex">
           <div className="flex flex-row px-2 py-3 gap-x-4">
