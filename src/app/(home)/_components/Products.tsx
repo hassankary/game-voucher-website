@@ -56,12 +56,8 @@ export default function Products() {
   }, []);
 
   useEffect(() => {
-    if (error) {
-      console.error("Error fetching products:", error);
-    } else {
-      console.log("products =>", products);
-    }
-  }, [products, error]);
+    console.error("Error fetching products:", error);
+  }, [error]);
 
   return (
     <div className="container flex flex-col mx-auto px-4 gap-y-5 xl:max-w-7xl">
