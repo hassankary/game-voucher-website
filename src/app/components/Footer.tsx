@@ -8,9 +8,9 @@ const dataFooter = [
       { title: "Beranda", href: "/" },
       { title: "Masuk", href: "/" },
       { title: "Daftar", href: "/" },
-      { title: "Cek Transaksi", href: "/" },
-      { title: "Hubungi Kami", href: "/" },
-      { title: "Ulasan", href: "/" },
+      { title: "Cek Transaksi", href: "/invoices" },
+      { title: "Hubungi Kami", href: "https://hassankary-portfolio.vercel.app/" },
+      { title: "Ulasan", href: "https://www.vygaming.id/id/reviews" },
     ],
   },
   {
@@ -43,7 +43,7 @@ export default function Footer() {
                   {d.data?.map((d) => {
                     return (
                       <Link key={d.title} href={d.href}>
-                        <div>{d.title}</div>
+                        <div className="hover:text-[#0563FC]/75 transition-all">{d.title}</div>
                       </Link>
                     );
                   })}
