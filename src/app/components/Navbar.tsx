@@ -159,12 +159,11 @@ export default function Navbar() {
       }
     }
   };
-  
+
   useEffect(() => {
     if (openModal) {
       getPopular();
       getProducts();
-
     } else {
       setPopularProducts([]);
       setProducts([]);
@@ -334,7 +333,7 @@ export default function Navbar() {
                   placeholder="Search..."
                   onChange={(e) => setSearch(e.target.value)}
                   value={search}
-                  className="h-12 w-full py-2 text-white placeholder:text-white bg-[#212121] text-sm focus:outline-none"
+                  className="h-12 w-full py-2 text-white placeholder:text-white bg-[#212121] sm:text-sm focus:outline-none"
                 />
               </div>
               <div className="max-h-80 flex flex-col p-2 overflow-y-auto">
@@ -348,20 +347,19 @@ export default function Navbar() {
                     {(search === "" ? popularProducts : filteredProducts).map(
                       (d) => {
                         return (
-                          <li
-                            key={d.title}
-                            className="flex items-center px-3 py-2 space-x-3 text-sm hover:bg-black/20 rounded-xl transition-colors"
-                          >
-                            <Image
-                              src={d.thumbnail}
-                              alt={d.title}
-                              height={300}
-                              width={300}
-                              unoptimized
-                              className="w-24 object-cover aspect-square rounded-2xl"
-                            />
-                            <div>{d.title}</div>
-                          </li>
+                          <Link key={d.title} href={`https://www.vygaming.id/id/${d.handle}`}>
+                            <li className="flex items-center px-3 py-2 space-x-3 text-sm hover:bg-black/20 rounded-xl transition-colors">
+                              <Image
+                                src={d.thumbnail}
+                                alt={d.title}
+                                height={300}
+                                width={300}
+                                unoptimized
+                                className="w-24 object-cover aspect-square rounded-2xl"
+                              />
+                              <div>{d.title}</div>
+                            </li>
+                          </Link>
                         );
                       }
                     )}
