@@ -78,7 +78,7 @@ export default function FlashSale() {
                     <Link
                       href={`https://www.vygaming.id/id/${d.productHandle}`}
                       key={i}
-                      className="w-[265px] flex flex-col flex-shrink-0 p-4 bg-[#202020] font-semibold gap-y-2 rounded-xl transition-all duration-300 ease-in-out overflow-hidden"
+                      className="w-[265px] flex flex-col flex-shrink-0 p-4 bg-[#202020] border border-[#212121] font-semibold gap-y-2 rounded-xl transition-all duration-300 ease-in-out overflow-hidden"
                     >
                       <div className="flex items-center space-x-3 animate-duration-500 animate-fade-right">
                         <Image

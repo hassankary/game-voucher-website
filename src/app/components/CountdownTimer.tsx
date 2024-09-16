@@ -2,20 +2,18 @@
 import { useEffect, useState } from "react";
 
 const CountdownTimer = () => {
-  // Fungsi untuk mendapatkan waktu target keesokan harinya pukul 23:59:59 WIB
   const getTargetDate = () => {
     const now = new Date();
     return new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getDate() + 1,
+      now.getDate() + 105,
       23,
       59,
       59
     );
   };
 
-  // Fungsi untuk menghitung sisa waktu
   const calculateTimeLeft = (targetDate: Date) => {
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
@@ -50,12 +48,12 @@ const CountdownTimer = () => {
 
   useEffect(() => {
     setMounted(true);
-    const targetDate = getTargetDate();
     const updateTimer = () => {
+      const targetDate = getTargetDate();
       setTimeLeft(calculateTimeLeft(targetDate));
     };
 
-    updateTimer(); // Set initial time
+    updateTimer();
     const timer = setInterval(updateTimer, 1000);
 
     return () => clearInterval(timer);
@@ -64,27 +62,19 @@ const CountdownTimer = () => {
   if (!mounted) {
     return (
       <div className="flex items-center space-x-2 font-normal text-sm">
-        <span
-          className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
-        >
-          00
-        </span>
-        <span
-          className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
-        >
-          00
-        </span>
-        <span
-          className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
-        >
-          00
-        </span>
+        {[0, 0, 0, 0].map((_, i) => {
+          return (
+            <span key={i} className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md">
+              0
+            </span>
+          );
+        })}
       </div>
     ); // Render nothing until mounted
   }
 
   if (timeLeft === null) {
-    return null// Render nothing until timeLeft is set
+    return null; // Render nothing until timeLeft is set
   }
 
   const timerComponents = [
