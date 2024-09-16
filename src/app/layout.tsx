@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import NextTopLoader from "nextjs-toploader";
 import Footer from "./components/Footer";
+import type { Viewport } from "next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,6 +23,12 @@ export const metadata: Metadata = {
     "Top up game & voucher terlaris, murah, aman legal 100% buka 24 Jam dengan payment terlengkap se-Indonesia.",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,10 +36,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#171717] font-sans text-white`}
       >
