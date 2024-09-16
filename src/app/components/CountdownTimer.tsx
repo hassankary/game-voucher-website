@@ -3,15 +3,7 @@ import { useEffect, useState } from "react";
 
 const CountdownTimer = () => {
   const getTargetDate = () => {
-    const now = new Date();
-    return new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + 105,
-      23,
-      59,
-      59
-    );
+    return new Date("Jan 1, 2025 00:00:00");
   };
 
   const calculateTimeLeft = (targetDate: Date) => {
