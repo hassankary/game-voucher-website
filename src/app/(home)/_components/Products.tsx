@@ -56,7 +56,9 @@ export default function Products() {
   }, []);
 
   useEffect(() => {
-    console.error("Error fetching products:", error);
+    if (error) {
+      console.error("Error fetching products:", error);
+    }
   }, [error]);
 
   return (

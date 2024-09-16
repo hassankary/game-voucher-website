@@ -45,13 +45,17 @@ export default function Popular() {
   }, []);
 
   useEffect(() => {
-    console.error("Error fetching popular:", error);
+    if (error) {
+      console.error("Error fetching popular:", error);
+    }
   }, [error]);
 
   return (
     <div className="container flex flex-col mx-auto px-4 space-y-5 xl:max-w-7xl">
       <div className="flex flex-col">
-        <h1 className="uppercase font-semibold text-lg leading-relaxed tracking-wider">🔥 Populer Sekarang!</h1>
+        <h1 className="uppercase font-semibold text-lg leading-relaxed tracking-wider">
+          🔥 Populer Sekarang!
+        </h1>
         <p className="pl-8 text-xs">
           Berikut adalah beberapa produk yang paling populer saat ini.
         </p>

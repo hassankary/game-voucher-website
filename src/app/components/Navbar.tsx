@@ -172,7 +172,9 @@ export default function Navbar() {
   }, [openModal]);
 
   useEffect(() => {
-    console.error("Error fetching Navbar:", error);
+    if (error) {
+      console.error("Error fetching Navbar:", error);
+    }
   }, [error]);
 
   const open = () => {
@@ -347,7 +349,10 @@ export default function Navbar() {
                     {(search === "" ? popularProducts : filteredProducts).map(
                       (d) => {
                         return (
-                          <Link key={d.title} href={`https://www.vygaming.id/id/${d.handle}`}>
+                          <Link
+                            key={d.title}
+                            href={`https://www.vygaming.id/id/${d.handle}`}
+                          >
                             <li className="flex items-center px-3 py-2 space-x-3 text-sm hover:bg-black/20 rounded-xl transition-colors">
                               <Image
                                 src={d.thumbnail}

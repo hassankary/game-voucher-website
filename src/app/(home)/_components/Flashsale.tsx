@@ -46,7 +46,9 @@ export default function FlashSale() {
   }, []);
 
   useEffect(() => {
-    console.error("Error fetching flashsale:", error);
+    if (error) {
+      console.error("Error fetching flashsale:", error);
+    }
   }, [error]);
 
   return (
@@ -54,7 +56,9 @@ export default function FlashSale() {
       <div className="flex flex-col w-full bg-[#1E1E1E] rounded-2xl overflow-hidden">
         <div className="flex flex-col px-4 pb-3 pt-4">
           <div className="flex gap-x-5 text-lg leading-relaxed ">
-            <span className="uppercase font-semibold leading-relaxed tracking-wider">⚡️ Flash Sale</span>
+            <span className="uppercase font-semibold leading-relaxed tracking-wider">
+              ⚡️ Flash Sale
+            </span>
             <CountdownTimer />
           </div>
           <p className="pl-8 text-xs">Pesan sekarang! Persediaan terbatas.</p>
@@ -78,7 +82,7 @@ export default function FlashSale() {
                     <Link
                       href={`https://www.vygaming.id/id/${d.productHandle}`}
                       key={i}
-                      className="w-[265px] flex flex-col flex-shrink-0 p-4 bg-[#202020] border border-[#212121] font-semibold gap-y-2 rounded-xl transition-all duration-300 ease-in-out overflow-hidden"
+                      className="w-[265px] flex flex-col flex-shrink-0 p-4 bg-[#202020] border border-[#212121] font-semibold gap-y-2 rounded-xl overflow-hidden"
                     >
                       <div className="flex items-center space-x-3 animate-duration-500 animate-fade-right">
                         <Image

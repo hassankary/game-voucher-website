@@ -94,13 +94,9 @@ export default function Leaderboard() {
 
   useEffect(() => {
     if (error) {
-      console.error("Error fetching popular:", error);
-    } else {
-      console.log("listToday =>", listToday);
-      console.log("listWeek =>", listWeek);
-      console.log("listMonth =>", listMonth);
+      console.error("Error fetching leaderboard:", error);
     }
-  }, [listToday, listWeek, listMonth, error]);
+  }, [error]);
 
   return (
     <>
@@ -116,7 +112,17 @@ export default function Leaderboard() {
             <p className="max-w-3xl mt-4 text-center text-lg leading-8">
               Berikut ini adalah daftar 10 pembelian terbanyak yang dilakukan
               oleh pelanggan kami. Data ini diambil dari sistem kami dan selalu
-              diperbaharui. <span className=" text-pink-600">(This website was last updated on September 11, 2024. Check the latest updates directly on <Link href={"https://www.vygaming.id/id/leaderboard"} className="underline font-bold hover:text-pink-500 transition-all">vygaming.id/id/leaderboard)</Link></span>
+              diperbaharui.{" "}
+              <span className=" text-pink-600">
+                (This website was last updated on September 11, 2024. Check the
+                latest updates directly on{" "}
+                <Link
+                  href={"https://www.vygaming.id/id/leaderboard"}
+                  className="underline font-bold hover:text-pink-500 transition-all"
+                >
+                  vygaming.id/id/leaderboard)
+                </Link>
+              </span>
             </p>
           </div>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-14 sm:mt-24 text-sm">

@@ -40,7 +40,9 @@ export default function CarouselHomePage() {
   }, []);
 
   useEffect(() => {
-    console.error("Error fetching banner:", error);
+    if (error) {
+      console.error("Error fetching banner:", error);
+    }
   }, [error]);
 
   return (
