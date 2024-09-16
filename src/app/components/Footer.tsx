@@ -39,12 +39,11 @@ export default function Footer() {
               return (
                 <div key={d.title} className="flex flex-col space-y-6">
                   <div
-                    key={d.title}
                     className="font-semibold text-[#0563FC] leading-6"
                   >
                     {d.title}
                   </div>
-                  <div key={d.title} className="flex flex-col space-y-4">
+                  <div className="flex flex-col space-y-4">
                     {d.data?.map((d) => {
                       return (
                         <Link key={d.title} href={d.href}>
