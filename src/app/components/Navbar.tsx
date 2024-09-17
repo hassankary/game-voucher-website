@@ -339,11 +339,17 @@ export default function Navbar() {
                 />
               </div>
               <div className="max-h-80 flex flex-col p-2 overflow-y-auto">
-                <h1 className="px-3 pt-4 font-semibold text-xs">
-                  {search !== "" ? "Search" : "Popular"}
-                </h1>
+                {filteredProducts.length !== 0 ? (
+                  <h1 className="px-3 pt-4 font-semibold text-xs">
+                    {search !== "" ? "Search" : "Popular"}
+                  </h1>
+                ) : null}
                 {search === "" && popularProducts.length === 0 ? (
-                  <div className="h-[280px] flex justify-center items-center"></div>
+                  <div className="h-[312px] flex justify-center items-center"></div> //loading popularProducts component
+                ) : search !== "" && filteredProducts.length === 0 ? (
+                  <div className="flex items-center justify-center px-6 py-14 sm:px-14 text-sm">
+                    {`We couldn't find any products with that term. Please try again.`}
+                  </div>
                 ) : (
                   <ul className="pt-2">
                     {(search === "" ? popularProducts : filteredProducts).map(
