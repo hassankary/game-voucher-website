@@ -1,81 +1,63 @@
 import { useEffect, useState } from "react";
 
-const CountdownTimer = () => {
-  const getTargetDate = () => {
-    return new Date("Jan 1, 2025 00:00:00");
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const getTargetDate = () => {
+  return new Date("Jan 1, 2026 00:00:00");
+};
+
+const calculateTimeLeft = (targetDate: Date) => {
+  const now = new Date();
+  const difference = targetDate.getTime() - now.getTime();
+  let timeLeft = {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   };
 
-  const calculateTimeLeft = (targetDate: Date) => {
-    const now = new Date();
-    const difference = targetDate.getTime() - now.getTime();
-    let timeLeft = {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
+  if (difference > 0) {
+    timeLeft = {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      ),
+      minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((difference % (1000 * 60)) / 1000),
     };
+  }
 
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        ),
-        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000),
-      };
-    }
+  return timeLeft;
+};
 
-    return timeLeft;
+const CountdownTimer = () => {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const isExpired =
+    timeLeft !== null && Object.values(timeLeft).every((v) => v === 0);
+
+  const updateTimer = () => {
+    const targetDate = getTargetDate();
+    const calculatedTime = calculateTimeLeft(targetDate);
+    setTimeLeft(calculatedTime);
   };
-
-  const [timeLeft, setTimeLeft] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-  } | null>(null);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const updateTimer = () => {
-      const targetDate = getTargetDate();
-      setTimeLeft(calculateTimeLeft(targetDate));
-    };
-
     updateTimer();
     const timer = setInterval(updateTimer, 1000);
 
     return () => clearInterval(timer);
   }, []);
 
-  if (!mounted) {
-    return (
-      <div className="flex items-center space-x-1 font-normal text-sm">
-        {[0, 0, 0, 0].map((_, i) => {
-          return (
-            <span
-              key={i}
-              className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
-            >
-              0
-            </span>
-          );
-        })}
-      </div>
-    ); // Render nothing until mounted
-  }
-
-  if (timeLeft === null) {
-    return null; // Render nothing until timeLeft is set
-  }
-
   const timeUnits = [
-    { label: "days", value: timeLeft.days },
-    { label: "hours", value: timeLeft.hours },
-    { label: "minutes", value: timeLeft.minutes },
-    { label: "seconds", value: timeLeft.seconds },
+    { label: "days", value: timeLeft?.days },
+    { label: "hours", value: timeLeft?.hours },
+    { label: "minutes", value: timeLeft?.minutes },
+    { label: "seconds", value: timeLeft?.seconds },
   ];
 
   const timerComponents = timeUnits.map(({ label, value }) => (
@@ -83,16 +65,16 @@ const CountdownTimer = () => {
       key={label}
       className="flex h-7 w-7 justify-center items-center bg-[#1C1C1C] rounded-md"
     >
-      {value.toString().padStart(2, "0")}
+      {value ? value.toString().padStart(2, "0") : "0"}
     </span>
   ));
 
   return (
     <div className="flex items-center space-x-1 font-normal text-sm">
-      {timerComponents.length ? (
-        timerComponents
+      {isExpired ? (
+        <span className="text-red-500 text-lg font-semibold">(Expired on January 1, 2026)</span>
       ) : (
-        <span className="text-xl font-bold">Flash Sale is Over!</span>
+        timerComponents
       )}
     </div>
   );
